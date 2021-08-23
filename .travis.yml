@@ -12,6 +12,6 @@ branches:
 
 deploy:
   provider: heroku
-  app: 'store-steam'
+  app: store-steam
   api_key:
     secure: '0e0cefe3-8fa5-4624-9cde-56c26cbb40c3'
