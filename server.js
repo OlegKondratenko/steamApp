@@ -1,15 +1,16 @@
 let express = require('express');
-let logger = require('morgan');
 let path = require('path');
 let app = express();
 
 
-app.use(logger('dev'));
-app.use(express.json());
+
 app.use(express.static(path.join(__dirname, '/dist/steam-app')));
 
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/dist/steam-app/index.html'))
+})
 
-// catch 404 and forward to error handler
+/* // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   res.status(404).json('not found')
 });
@@ -22,6 +23,8 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-});
+}); */
+
+app.listen(process.env.PORT || 8080)
 
 module.exports = app;
