@@ -1,13 +1,15 @@
 let express = require('express');
 let path = require('path');
 let app = express();
-
-const {authRouter} = require('./server/controllers/authController');
-const {AuthMiddleware} = require('./server/middlewares/AuthMiddleware');
 const mongoose = require('mongoose');
 
+const {authRouter} = require('./server/controllers/authController');
+const {usersRouter} = require('./server/controllers/usersController')
+const {AuthMiddleware} = require('./server/middlewares/AuthMiddleware');
+
+const PORT = 4200;
+
 app.use(express.json({extended: true}));
-app.use(morgan('tiny'));
 
 app.use(express.static(path.join(__dirname, '/dist/steam-app')));
 app.get('/', function (req, res) {
