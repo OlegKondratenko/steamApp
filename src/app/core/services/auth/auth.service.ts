@@ -20,10 +20,10 @@ export class AuthService {
   ) {
   }
   register(user: UserAuthData) {
-    return this.http.post(`http://localhost:${process.env.PORT}/api/auth/register`, user, { observe: 'response' })
+    return this.http.post(`https://store-steam.herokuapp.com/api/auth/register`, user, { observe: 'response' })
   }
   login(user: UserAuthData) {
-    return this.http.post<{username:string,token:string, email:string,age?:number}>(`http://localhost:${process.env.PORT}/api/auth/login`, user, { observe: 'response' })
+    return this.http.post<{username:string,token:string, email:string,age?:number}>(`https://store-steam.herokuapp.com/api/auth/login`, user, { observe: 'response' })
   }
   logout() {
     localStorage.removeItem('user');
@@ -32,6 +32,6 @@ export class AuthService {
     this.websocketService.changeAuthStatus()
   }
   changeUserProfile(userInfo:userProfileInfoInterface){
-    return this.http.put(`http://localhost:${process.env.PORT}/api/auth/profile`, userInfo,{ observe: 'response' })
+    return this.http.put(`https://store-steam.herokuapp.com/api/auth/profile`, userInfo,{ observe: 'response' })
   }
 }
