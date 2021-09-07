@@ -22,10 +22,10 @@ export class GamesService {
         }
       }
     }
-    return this.http.get<gamesInterface>(`http://localhost:4300/api/games?${!!price ? `price=${price}&` : ''}${!!name ? `name=${name}&` : ''}${!!genres ? `genres=${genresQuery.join('+')}&` : ''}`)
+    return this.http.get<gamesInterface>(`http://localhost:${process.env.PORT}/api/games?${!!price ? `price=${price}&` : ''}${!!name ? `name=${name}&` : ''}${!!genres ? `genres=${genresQuery.join('+')}&` : ''}`)
   }
   addGameToUserLibrary(gameId:string){
-    return this.http.put<gamesInterface>(`http://localhost:4300/api/games/${gameId}`,{})
+    return this.http.put<gamesInterface>(`http://localhost:${process.env.PORT}/api/games/${gameId}`,{})
   }
 
 }

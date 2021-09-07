@@ -21,7 +21,6 @@ const { libraryRouter } = require("./server/controllers/libraryController");
 const { friendRouter } = require("./server/controllers/friendsController");
 const {
   getFriends,
-  addFriendRequest,
   getAllUsers,
   declineFriendRequest,
   deleteFriend,
@@ -136,8 +135,10 @@ const startApp = async () => {
     // app.listen(PORT, () => {
     //   console.log(`Example app listening at http://localhost:${PORT}`);
     // });
-    http.listen(PORT, function () {
-      console.log(`listening on http://localhost:${PORT}`);
+
+    console.log("PROCESS ENV PORT", process.env)
+    http.listen(process.env.PORT || 4300, function () {
+      console.log(`listening on http://localhost:${process.env.PORT || 4300}`);
     });
   } catch (err) {
     console.error(`Error on server startup: ${err.message}`);

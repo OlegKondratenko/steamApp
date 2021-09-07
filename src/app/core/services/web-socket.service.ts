@@ -14,7 +14,7 @@ export class WebSocketService {
     if (user) {
       token = JSON.parse(user || '')
     }
-    this.socket = io('http://localhost:4300', { query: { ...token } })
+    this.socket = io(`http://localhost:${process.env.PORT}`, { query: { ...token } })
   }
 
   listen(eventName: string) {
@@ -33,6 +33,6 @@ export class WebSocketService {
     if (user) {
       token = JSON.parse(user || '')
     }
-    this.socket = io('http://localhost:4300', { query: { ...token } })
+    this.socket = io(`http://localhost:${process.env.PORT}`, { query: { ...token } })
   }
 }
