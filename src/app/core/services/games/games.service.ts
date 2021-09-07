@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { gamesInterface, gamesSearchQueryInterface } from '../../models/games';
 
 @Injectable({
@@ -22,10 +23,10 @@ export class GamesService {
         }
       }
     }
-    return this.http.get<gamesInterface>(`https://store-steam.herokuapp.com/api/games?${!!price ? `price=${price}&` : ''}${!!name ? `name=${name}&` : ''}${!!genres ? `genres=${genresQuery.join('+')}&` : ''}`)
+    return this.http.get<gamesInterface>(`${environment.apiUrl}/api/games?${!!price ? `price=${price}&` : ''}${!!name ? `name=${name}&` : ''}${!!genres ? `genres=${genresQuery.join('+')}&` : ''}`)
   }
   addGameToUserLibrary(gameId:string){
-    return this.http.put<gamesInterface>(`https://store-steam.herokuapp.com/api/games/${gameId}`,{})
+    return this.http.put<gamesInterface>(`${environment.apiUrl}/api/games/${gameId}`,{})
   }
 
 }

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  JWT_KEY: 'sezam'
+  JWT_KEY: 'sezam',
+  apiUrl: 'http://localhost:4300'
 };
 
 /*

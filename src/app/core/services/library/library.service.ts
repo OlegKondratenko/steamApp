@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { gamesInterface } from '../../models/games';
 
 @Injectable({
@@ -13,6 +14,6 @@ export class LibraryService {
 
    }
    fetchUserGames(){
-    return this.http.get<gamesInterface>(`https://store-steam.herokuapp.com/api/library`)
+    return this.http.get<gamesInterface>(`${environment.apiUrl}/api/library`)
   }
 }
