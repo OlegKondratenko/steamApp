@@ -36,7 +36,7 @@ app.use(express.json({ extended: true }));
 app.use(morgan("tiny"));
 app.use(express.static(path.join(__dirname, "/dist/steam-app")));
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname + "/dist/steam-app/index.html"));
+  res.sendFile(path.join(__dirname, "/dist/steam-app/index.html"));
 });
 
 app.use("/api/auth", authRouter);
