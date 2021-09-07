@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const { type } = require("os");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -10,57 +11,47 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  role: {
-    type: String,
-    enum: {
-      values: ['driver', 'shipper'],
-      message: 'role is either driver or shipper',
-    },
-    required: true,
-  },
   created_date: {
     type: Date,
     default: Date.now(),
   },
-  trucks: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: [],
-    ref: 'Trucks',
-    get: function (trs) {
-      if (this.role === 'driver') {
-        return trs;
-      }
-      return 'Have no access';
-    },
+  library: [mongoose.Schema.Types.ObjectId],
+  age: {
+    type: Number,
   },
-  assignedLoads: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: null,
-    ref: 'Loads',
-    get: function (assignedLoads) {
-      const userRole = String(this.role).toLowerCase();
-      if (userRole === 'driver') {
-        return assignedLoads;
-      }
-      return 'Have no access to assigned loads';
-    },
+  email: {
+    type: String,
   },
-  loads: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: null,
-    ref: 'Loads',
-    get: function (loads) {
-      const userRole = String(this.role);
-      if (userRole === 'shipper') {
-        return loads;
-      }
-      return 'Have no access to loads';
+  sentRequest: [
+    {
+      friendId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+      },
+      friendName: { type: String, default: "" },
     },
-  },
-
+  ],
+  request: [
+    {
+      friendId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+      },
+      friendName: { type: String, default: "" },
+    },
+  ],
+  friendsList: [
+    {
+      friendId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+      },
+      friendName: { type: String, default: "" },
+    },
+  ],
 });
 
-const UserModel = mongoose.model('Users', userSchema);
+const UserModel = mongoose.model("Users", userSchema);
 
 module.exports = {
   UserModel,

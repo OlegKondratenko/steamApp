@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const {
   UserModel,
@@ -8,12 +9,10 @@ const {
 const registration = async ({
   username,
   password,
-  role,
 }) => {
   const user = new UserModel({
     username,
     password: await bcrypt.hash(password, 10),
-    role,
   });
   await user.save();
 };
@@ -36,16 +35,24 @@ const signIn = async ({
     err.status = 401;
     throw err;
   }
-  console.log('tokeasdasdasdfasd', user.role);
   const token = jwt.sign({
     _id: user._id,
-    role: user.role,
     username: user.username,
     iat: 7776000,
   }, process.env.JWT_KEY);
   return token;
 };
+
+const setUserProfileInfo = async ({ username, age, email, userId }) => {
+  const user = await UserModel.findOne({ _id: userId })
+  user.age = Number(age)
+  user.email = email
+  user.username = username
+  await user.save()
+}
+
 module.exports = {
   registration,
   signIn,
+  setUserProfileInfo,
 };

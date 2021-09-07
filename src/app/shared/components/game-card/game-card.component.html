@@ -1,0 +1,15 @@
+<div class="game-card" [class.mat-elevation-z8]="true">
+    <div [className]="'game-card__header'">
+        <span [className]="'game-card__name'">{{card.title}}</span>
+        <span [className]="'game-card__price'">{{card.price}} UAH</span>
+    </div>
+    <div [className]="'game-card__content'">
+        Lorem ipsum dolor sit, amet consectetur
+        adipisicing elit. Odio,
+        veniam minima repellendus vero cumque
+        quibusdam eaque iure unde accusamus quidem.
+    </div>
+    <button [className]="'game-card__button'" *ngIf="(isAuth$|async) && !isInLibrary" type="button" (click)="addGameToLibrary()">Add to
+        Library</button>
+    <a [className]="'steam-url'" *ngIf="card.steamUrl" [href]="card.steamUrl" target="_blank">Steam Link</a>
+</div>

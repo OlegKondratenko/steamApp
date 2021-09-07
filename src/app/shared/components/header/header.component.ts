@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { isAuthSelect } from 'src/app/core/store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  isAuth$: Observable<boolean>
+  constructor(
+    store: Store,
+    private authService: AuthService,
+  ) {
+    this.isAuth$ = store.pipe(select(isAuthSelect))
+  }
 
   ngOnInit(): void {
   }
-
+  logout() {
+    this.authService.logout();
+  }
 }

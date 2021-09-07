@@ -1,0 +1,38 @@
+<form [formGroup]="form" className="authForm" (ngSubmit)="auth()" [className]="'auth-form'">
+    <h2>{{action}}</h2>
+    <fieldset [className]="'auth-form__inputs-wrapper'">
+        <div [className]="'auth-form__email-wrapper'">
+            <label>Email:</label> <br>
+            <input name="email" formControlName="email" [className]="'auth-form__email-input'">
+            <div [className]="'validation-message'" *ngIf="form.get('email')?.invalid && 
+            form.get('email')?.errors && 
+            (form.get('email')?.dirty || form.get('email')?.touched)">
+                <small class="text-danger" *ngIf="form.get('email')?.hasError('required')">
+                    This field is required.
+                </small>
+                <small class="text-danger" *ngIf="form.get('email')?.hasError('minlength')">
+                    The minimum length for this field is {{form.get('email')?.errors?.minlength.requiredLength}}
+                    characters.
+                </small>
+            </div>
+        </div>
+        <div [className]="'auth-form__password-wrapper'">
+            <label>Password:</label><br>
+            <input name="password" formControlName="password" type="password" [className]="'auth-form__password-input'">
+            <div [className]="'validation-message'" *ngIf="form.get('password')?.invalid && 
+            form.get('password')?.errors && 
+            (form.get('password')?.dirty || form.get('password')?.touched)">
+                <small class="text-danger" *ngIf="form.get('password')?.hasError('required')">
+                    This field is required.
+                </small>
+                <small class="text-danger" *ngIf="form.get('password')?.hasError('minlength')">
+                    The minimum length for this field is {{form.get('password')?.errors?.minlength.requiredLength}}
+                    characters.
+                </small>
+            </div>
+        </div>
+
+    </fieldset>
+    <button [className]="'auth-form__btn'" [disabled]="!form.valid">{{action}}</button>
+
+</form>

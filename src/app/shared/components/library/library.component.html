@@ -1,0 +1,10 @@
+<h1>My Collection</h1>
+
+<div [className]="'library'">
+    <ng-container *ngFor="let item of games$|async|keyvalue">
+        <div class="library__game-wrapper">
+            <app-game-card  *ngIf="item.key!=='type'" [isInLibrary]="true" [card]="item.value" [className]="'game-card'">
+            </app-game-card>
+        </div>
+    </ng-container>
+</div>
