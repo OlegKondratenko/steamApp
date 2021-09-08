@@ -1,0 +1,22 @@
+<div [className]="'friends-wrapper'">
+    <form [formGroup]="form" id="users-form" [className]="'friends-form'">
+        <label for="user-name"  [className]="'friends-form__label'">Search friends</label> <br>
+        <input type="text" name="user-name" id="user-name" formControlName="name" [className]="'friends-form__name-input'">
+    </form>
+    <div [className]="'users friends-block'" *ngIf="isSearchingMode">
+        <h2>Find Friend</h2>
+        <app-friend-card *ngFor="let user of users$|async" [role]="'user'" [user]="user">
+        </app-friend-card>
+    </div>
+    <div [className]="'pendingFriends friends-block'" *ngIf="!isSearchingMode">
+        <h2>Unaccepted Requests</h2>
+        <app-friend-card *ngFor="let pendingFriend of unacceptedFriends$|async" [role]="'pending'" [user]="pendingFriend">
+        </app-friend-card>
+    </div>
+    <div [className]="'friends friends-block'" *ngIf="!isSearchingMode">
+        <h2>My Friends</h2>
+        <app-friend-card *ngFor="let friend of friends$|async" [role]="'friend'" [user]="friend">
+        </app-friend-card>
+    </div>
+
+</div>

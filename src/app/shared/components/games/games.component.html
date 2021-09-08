@@ -1,0 +1,42 @@
+<h2 class="games-heading">Games</h2>
+<form [formGroup]="form" id="games-form" name="games-form" [className]="'games-form'">
+    <fieldset class="game-form__text-input">
+        <label for="game-name">Search games</label><br />
+        <input type="text" id="game-name" placeholder="Search Games" formControlName="name">
+    </fieldset>
+    <div [className]="'game-form__content-wrapper'">
+        <fieldset [className]="'game-form__results'">
+            <ng-container *ngFor="let item of games$|async|keyvalue">
+                <app-game-card *ngIf="item.key!=='type'" [card]="item.value" [className]="'games-form-card'">
+                </app-game-card>
+            </ng-container>
+        </fieldset>
+        <div [className]="'game-form__controls'">
+            <h4>Filter by price</h4>
+            <fieldset [className]="'game-form__price-wrapper'">
+                <input type="range" [formControlName]="'price'" id="price" thumbLabel tickInterval="100" step="100"
+                    min="0" max="1000" aria-label="units" [(ngModel)]="value"  [className]="'game-form__price-range'"><br>
+                    <span [className]="'game-form__price'">{{value}}</span>
+            </fieldset>
+            <h4>Filter by tag</h4>
+            <fieldset [formGroupName]="'genres'" [className]="'games-form__genres'">
+                <div class="games-from__tag-wrapper">
+                    <input type="checkbox" id="indie" [className]="'games-forms__checkbox'" formControlName='indie'>
+                    <label for="indie">indie</label> <br>
+                </div>
+                <div class="games-from__tag-wrapper">
+
+                    <input type="checkbox" id="adventure" [className]="'games-forms__checkbox'"
+                        formControlName='adventure'>
+                    <label for="adventure">adventure</label> <br>
+                </div>
+
+                <div class="games-from__tag-wrapper">
+                    <input type="checkbox" id="action" [className]="'games-forms__checkbox'" formControlName='action'>
+                    <label for="action">action</label> <br>
+                </div>
+            </fieldset>
+        </div>
+
+    </div>
+</form>

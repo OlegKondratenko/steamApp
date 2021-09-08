@@ -1,0 +1,15 @@
+<mat-toolbar [class.mat-elevation-z8]="true" color="primary" [className]="'header'">
+  <a href="#" [className]="'header-logo-wrapper'" [routerLink]="['']" ><img src="../../../../assets/imgs/steamLogo.png" [className]="'header-logo'"></a>
+  <a *ngIf="isAuth$|async" [className]="'header__category-link'" [routerLink]="['/library']">Library</a>
+  <a *ngIf="isAuth$|async" [className]="'header__category-link'" [routerLink]="['/friends']">Friends</a>
+  <a *ngIf="isAuth$|async" [className]="'header__category-link'" [routerLink]="['/profile']">Profile</a>
+  <a [className]="'header__category-link'" [routerLink]="['/games']">games</a>
+
+  <div [className]="'header__auth-wrapper'">
+    <a *ngIf="!(isAuth$|async)" [className]="'header__auth-link'" [routerLink]="['/auth']" [queryParams]="{action: 'login'}">log
+      in</a>
+    <a *ngIf="!(isAuth$|async)" [className]="'header__auth-link'" [routerLink]="['/auth']"
+      [queryParams]="{action: 'registration'}">sign up</a>
+    <a *ngIf="isAuth$|async" [className]="'header__auth-link'" (click)="logout()">log out</a>
+  </div>
+</mat-toolbar>

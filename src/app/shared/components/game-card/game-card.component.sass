@@ -1,0 +1,59 @@
+.game-card
+  width: 100%
+  height: 100%
+  display: flex
+  flex-direction: column
+  align-items: stretch
+  justify-content: flex-start
+  padding: 0
+  border-radius: 20px
+  overflow: hidden
+  transition: box-shadow 0.5s ease
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)
+.game-card:hover
+  box-shadow: 0px 6px 6px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)
+  .game-card__header
+    background-color: #7e7cff
+    transition: background-color 0.5s ease
+
+
+.game-card__header
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  min-height: 200px
+  padding: 1rem
+  background-color: #bdbcff
+  transition: background-color 0.5s ease
+  span
+    color: white
+    text-transform: capitalize
+    font-weight: 400
+    font-size: 1.5rem
+.game-card__name
+  align-self: flex-start
+.game-card__price
+  align-self: flex-end
+.game-card__content
+  padding: 1rem
+.game-card__content
+  padding: 1rem
+.game-card__button
+  margin: 1rem
+  padding: 1rem
+  border: none
+  border-radius: 10px
+  background-color: #6c69ff
+  transition: background-color 0.5s ease
+.game-card__button:hover
+  background-color: #4e4bff
+.game-card__button:active
+  background-color: #2522c2
+.steam-url
+  align-self: center
+  padding: 1rem
+  color: black
+  text-decoration: none
+  border-radius: 10px
+.steam-url:hover
+  background-color: rgba(185, 183, 183, 0.5)

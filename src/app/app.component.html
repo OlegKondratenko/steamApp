@@ -1,1 +1,8 @@
-<h1>My Steam App</h1>
+
+<div [className]="'steam-wrapper'">
+    <app-header [className]="'header-container'"></app-header>
+    <div [className]="'content-container'">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer [className]="'footer-container'"></app-footer>
+</div>
