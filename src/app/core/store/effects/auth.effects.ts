@@ -35,11 +35,11 @@ export class AuthEffects {
         exhaustMap((act) => this.authService.login({ username: act.username, password: act.password })
             .pipe(
                 map(res => {
-                    if (res.status>=200 && res.status<=299) {
+                    if (res.ok) {
                         localStorage.setItem('user', JSON.stringify({ username: res.body?.username, token: res.body?.token }))
                         this.websocketService.changeAuthStatus()
                         this.router.navigateByUrl('/library');
-                        return loginUserSuccess({ username: res.body?.username, token: res.body?.token, email: res.body?.email, age: res.body?.age })
+                        return loginUserSuccess({...res.body})
                     } else {
                         return loginUserError()
                     }

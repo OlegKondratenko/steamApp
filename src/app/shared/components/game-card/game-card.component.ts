@@ -10,7 +10,7 @@ import { isAuthSelect } from 'src/app/core/store/selectors/auth.selectors';
   templateUrl: './game-card.component.html',
   styleUrls: ['./game-card.component.sass']
 })
-export class GameCardComponent implements OnInit {
+export class GameCardComponent {
   @Input() card!: Game;
   @Input() isInLibrary!: boolean;
   isAuth$: Observable<boolean>
@@ -18,9 +18,6 @@ export class GameCardComponent implements OnInit {
     this.isAuth$ = store.pipe(select(isAuthSelect))
    }
 
-  ngOnInit(): void {
-
-  }
   addGameToLibrary() {
     this.store.dispatch(addGameToUserLibrary({ _id: this.card._id }))
   }

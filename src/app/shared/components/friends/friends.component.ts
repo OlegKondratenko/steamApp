@@ -38,11 +38,7 @@ export class FriendsComponent implements OnInit {
     this.requestedFriends$ = this.store.pipe(select(sentToSelect))
 
     this.form.valueChanges.subscribe(val => {
-      if (val.name === '') {
-        this.isSearchingMode = false
-      } else {
-        this.isSearchingMode = true
-      }
+      this.isSearchingMode = !!val.name;
       this.webSocketService.emit('searchUsers', { name: val.name })
     })
 

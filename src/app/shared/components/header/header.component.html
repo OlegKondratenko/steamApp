@@ -6,10 +6,12 @@
   <a [className]="'header__category-link'" [routerLink]="['/games']">games</a>
 
   <div [className]="'header__auth-wrapper'">
-    <a *ngIf="!(isAuth$|async)" [className]="'header__auth-link'" [routerLink]="['/auth']" [queryParams]="{action: 'login'}">log
-      in</a>
-    <a *ngIf="!(isAuth$|async)" [className]="'header__auth-link'" [routerLink]="['/auth']"
-      [queryParams]="{action: 'registration'}">sign up</a>
-    <a *ngIf="isAuth$|async" [className]="'header__auth-link'" (click)="logout()">log out</a>
+    <a *ngIf="isAuth$|async; else pendingFriends" [className]="'header__auth-link'" (click)="logout()">log out</a>
+    <ng-template #pendingFriends>
+      <a *ngIf="!(isAuth$|async)" [className]="'header__auth-link'" [routerLink]="['/auth']" [queryParams]="{action: 'login'}">log
+        in</a>
+      <a *ngIf="!(isAuth$|async)" [className]="'header__auth-link'" [routerLink]="['/auth']"
+        [queryParams]="{action: 'registration'}">sign up</a>
+    </ng-template>
   </div>
 </mat-toolbar>
