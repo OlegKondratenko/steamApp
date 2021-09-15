@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.sass"
             ],
             "scripts": []
@@ -78,7 +79,11 @@
               "browserTarget": "steam-app:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "browserTarget": "project-name:build",
+            "proxyConfig": "src/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

@@ -1,0 +1,9 @@
+<div  [className]="'friend-card'"  [class.mat-elevation-z4]="true">
+    <span [className]="'friend-card__username'">{{user.friendName}}</span><br>
+    <div class="friend-card__buttons-wrapper">
+        <button *ngIf="role==='user'" (click)="addFriend()"  color='primary' mat-raised-button [ngClass]="'friend-card__btn'">add user</button>
+        <button *ngIf="role==='friend'" (click)="removeFriend()" color='warn' mat-raised-button [ngClass]="'friend-card__btn'">delete friend</button>
+        <button *ngIf="role==='pending'" (click)="acceptFriend()" color='primary' mat-raised-button [ngClass]="'friend-card__btn'">accept friend</button>
+        <button *ngIf="role==='pending'" (click)="rejectFriend()" color='warn' mat-raised-button [ngClass]="'friend-card__btn'">decline friend</button>
+    </div>
+</div>
